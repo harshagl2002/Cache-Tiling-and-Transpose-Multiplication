@@ -1,0 +1,2 @@
+Average execution time of transpose_basic(): 0.001823
+Average execution time of transpose_tiled(): 0.000232

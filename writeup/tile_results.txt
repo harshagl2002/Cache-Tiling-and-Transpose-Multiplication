@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                        Time             CPU   Iterations UserCounters...
+----------------------------------------------------------------------------------------------------------------------------------
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:2/manual_time      8284024 ns      8284204 ns           85 bits=64 items_per_second=506.312M/s matrix_size=2.048k tile_size=2
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:4/manual_time      5353584 ns      5353936 ns          128 bits=64 items_per_second=783.457M/s matrix_size=2.048k tile_size=4
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:8/manual_time      6381186 ns      6381476 ns          109 bits=64 items_per_second=657.292M/s matrix_size=2.048k tile_size=8
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:16/manual_time     9716364 ns      9716243 ns           72 bits=64 items_per_second=431.674M/s matrix_size=2.048k tile_size=16
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:32/manual_time    30354370 ns     30351761 ns           24 bits=64 items_per_second=138.178M/s matrix_size=2.048k tile_size=32
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:64/manual_time    55642921 ns     55639798 ns           12 bits=64 items_per_second=75.3789M/s matrix_size=2.048k tile_size=64
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:128/manual_time   42986598 ns     42984767 ns           16 bits=64 items_per_second=97.5724M/s matrix_size=2.048k tile_size=128
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:256/manual_time   48341857 ns     48339242 ns           14 bits=64 items_per_second=86.7634M/s matrix_size=2.048k tile_size=256
+BM_Transpose_Tiled_vary_tile/matrix_size:2048/tile_size:512/manual_time   53120339 ns     53117356 ns           14 bits=64 items_per_second=78.9585M/s matrix_size=2.048k tile_size=512
+BM_Transpose_Tiled_vary_size/matrix_size:128/tile_size:8/manual_time         11457 ns        11661 ns        60268 bits=64 items_per_second=1.43003G/s matrix_size=128 tile_size=8
+BM_Transpose_Tiled_vary_size/matrix_size:256/tile_size:8/manual_time         54273 ns        54541 ns        12932 bits=64 items_per_second=1.20752G/s matrix_size=256 tile_size=8
+BM_Transpose_Tiled_vary_size/matrix_size:512/tile_size:8/manual_time        241295 ns       241550 ns         2910 bits=64 items_per_second=1086.4M/s matrix_size=512 tile_size=8
+BM_Transpose_Tiled_vary_size/matrix_size:1024/tile_size:8/manual_time      1025788 ns      1026518 ns          674 bits=64 items_per_second=1022.22M/s matrix_size=1024 tile_size=8
+BM_Transpose_Tiled_vary_size/matrix_size:2048/tile_size:8/manual_time      6414459 ns      6414796 ns          110 bits=64 items_per_second=653.883M/s matrix_size=2.048k tile_size=8
+BM_Transpose_Tiled_vary_size/matrix_size:4096/tile_size:8/manual_time     64501878 ns     64498113 ns           11 bits=64 items_per_second=260.104M/s matrix_size=4.096k tile_size=8
+BM_Transpose_Tiled_vary_size/matrix_size:8192/tile_size:8/manual_time    824327080 ns    824269686 ns            1 bits=64 items_per_second=81.4105M/s matrix_size=8.192k tile_size=8

@@ -1,0 +1,14 @@
+-----------------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                                         Time             CPU   Iterations UserCounters...
+-----------------------------------------------------------------------------------------------------------------------------------
+BM_Transpose_Naive/matrix_size:512/process_time/real_time                    888326 ns       888252 ns          787 bits=64 items_per_second=295.099M/s matrix_size=512 tile_size=512
+BM_Transpose_Tiled/matrix_size:512/tile_size:8/process_time/real_time        214977 ns       214961 ns         3254 bits=64 items_per_second=1.2194G/s matrix_size=512 tile_size=8
+BM_Multiply_Naive/matrix_size:512/process_time/real_time                  444028039 ns    443994178 ns            2 bits=64 items_per_second=604.546M/s matrix_size=512 tile_size=512
+BM_Multiply_Tiled/matrix_size:512/tile_size:8/process_time/real_time      100699554 ns    100691922 ns            7 bits=64 items_per_second=2.66571G/s matrix_size=512 tile_size=8
+BM_Multiply_Transposed/matrix_size:512/process_time/real_time              87305868 ns     87296634 ns            8 bits=64 items_per_second=3.07466G/s matrix_size=512 tile_size=512
+BM_OpenMP_squares_serial/N:262144/num_threads:1/process_time/real_time        45413 ns        45410 ns        15434 N=262.144k bits=64 items_per_second=5.77241G/s num_threads=1
+BM_OpenMP_squares_parallel/N:262144/num_threads:2/process_time/real_time      25099 ns        50193 ns        27865 N=262.144k bits=64 items_per_second=10.4446G/s num_threads=2
+BM_OpenMP_squares_parallel/N:262144/num_threads:4/process_time/real_time      15195 ns        60774 ns        45868 N=262.144k bits=64 items_per_second=17.2523G/s num_threads=4
+BM_OpenMP_primes_serial/N:262144/num_threads:1/process_time/real_time    2794360961 ns   2811021848 ns            1 N=262.144k bits=64 items_per_second=93.8118k/s num_threads=1
+BM_OpenMP_primes_parallel/N:262144/num_threads:2/process_time/real_time  2053122937 ns   2803167553 ns            1 N=262.144k bits=64 items_per_second=127.681k/s num_threads=2
+BM_OpenMP_primes_parallel/N:262144/num_threads:4/process_time/real_time  1182871278 ns   2816045253 ns            1 N=262.144k bits=64 items_per_second=221.617k/s num_threads=4

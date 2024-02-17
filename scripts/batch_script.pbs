@@ -1,0 +1,75 @@
+#!/bin/bash
+#PBS -l walltime=00:45:00
+#PBS -l nodes=1:ppn=4
+#PBS -N mp1-benchmark
+#PBS -j oe
+#PBS -q eng-instruction
+#PBS -l "naccesspolicy=shared"
+#PBS -S /projects/eng/shared/cs484/sing_shell.sh
+
+
+## If not started with PBS, figure out where we are relative to the build directory
+#####Snippet from:   http://stackoverflow.com/questions/59895/
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#####end snippet
+#IF PBS_O_WORKDIR is not set, we are not running in PBS, choose directory relative to script.
+PBS_O_WORKDIR=${PBS_O_WORKDIR:-${SCRIPT_DIR}/..}
+
+#moves to the directory the user was in when they ran qsub
+cd ${PBS_O_WORKDIR} #assumed to be the source tree
+
+#check that the script was submit from the right place.
+if [ -d "./cmake" ] && [ -d "./tests" ] && [ -d "./writeup" ]
+then
+	echo "We seem to be in the right place."
+else
+	echo "Not submit from the right place! Submit from the root of your repository."
+	exit 1
+fi
+
+#creates an out-of-tree build directory for CMake and moves to it
+mkdir -p ${PBS_O_WORKDIR}/build
+pushd ${PBS_O_WORKDIR}/build
+
+#build the programs (into the build directory, IE, the current directory)
+#then benchmark them. Quit early on failure.
+echo "Compiling"
+cmake ${PBS_O_WORKDIR} && make
+
+#Google test tests
+echo "Testing"
+make test
+
+echo "Getting system information"
+getconf -a | grep CACHE > ${PBS_O_WORKDIR}/writeup/cache_properties.txt
+
+echo "Benchmarking"
+
+
+#echo "Matrix Multiplication"
+./bin/multiply_runner 512 8 > ${PBS_O_WORKDIR}/writeup/multiply_results.txt
+
+
+#echo "Matrix Transposition"
+./bin/transpose_runner 512 8 > ${PBS_O_WORKDIR}/writeup/transpose_results.txt
+
+#echo "OpenMP"
+./bin/openmp_runner 1024 > ${PBS_O_WORKDIR}/writeup/openmp_results.txt
+
+
+#benchmarks with google benchmark
+echo "Running Google Benchmark benchmarks"
+
+echo "Finding best tile size"
+./bin/find_tile_size  --benchmark_color=false --benchmark_out_format=json --benchmark_out=${PBS_O_WORKDIR}/writeup/tile_results.json > ${PBS_O_WORKDIR}/writeup/tile_results.txt
+
+
+echo "Full benchmarks"
+./bin/run_benchmarks  --benchmark_color=false --benchmark_out_format=json --benchmark_out=${PBS_O_WORKDIR}/writeup/gbench_results.json > ${PBS_O_WORKDIR}/writeup/gbench_results.txt
+
+#uncomment these lines if you wrote your own benchmarks and wish to use them.
+#echo "Running Student Google Benchmark benchmarks"
+#./bin/student_benchmarks  --benchmark_color=false --benchmark_out_format=json --benchmark_out=${PBS_O_WORKDIR}/writeup/student_gbench_results.txt
+
+#return to the original directory
+popd
